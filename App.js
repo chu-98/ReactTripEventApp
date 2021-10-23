@@ -15,20 +15,31 @@ const Title = styled.Text`
   padding-top: 8px;
   padding-bottom: 40px;
 `;
+const BigTitle = styled.Text``;
+const Layer = styled.View``;
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 export default function App() {
-  const [locations, setLocations] = useState();
-  useEffect(() => {
-    axios
-      .get(
+  const [locations, setLocations] = useState([]);
+
+  const getLocations = async () => {
+    try {
+      const response = await fetch(
         "https://69cee40f-f372-4734-a2ff-a043da89d0b2.mock.pstmn.io/location"
-      )
-      .then(function (response) {
-        console.log(response);
-        setLocations(response);
-      });
+      );
+      const json = await response.json();
+      setLocations(json.locations);
+      console.log(json.locations);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLocations(false);
+    }
+  };
+
+  useEffect(() => {
+    getLocations();
   }, []);
 
   return (
@@ -43,7 +54,13 @@ export default function App() {
         <Title>제주 쉬기 딱 좋은 지역별 안내</Title>
         <Door source={require("./images/JejuMap.png")} />
       </First>
-      <Second style={styles.container}></Second>
+      <Second style={styles.container}>
+        {/* {locations.map(location => (
+          <Layer key={location.id}>
+            <BigTitle>{location.id}</BigTitle>
+          </Layer>
+        ))} */}
+      </Second>
       <Third style={styles.container}></Third>
     </ScrollView>
   );
