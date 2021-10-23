@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "TripEventApp",
+    "slug": "TripEventApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "TripEventApp"
+}
