@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, ScrollView, StyleSheet } from "react-native";
+import {
+  Dimensions,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+} from "react-native";
 import styled from "styled-components/native";
-import axios from "axios";
+import Location from "./components/Location";
 
 const Door = styled.Image``;
 const First = styled.View``;
 const Second = styled.View``;
-const Third = styled.View``;
 
 const Title = styled.Text`
   font-size: 27px;
@@ -15,8 +20,6 @@ const Title = styled.Text`
   padding-top: 8px;
   padding-bottom: 40px;
 `;
-const BigTitle = styled.Text``;
-const Layer = styled.View``;
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -28,18 +31,19 @@ export default function App() {
       const response = await fetch(
         "https://69cee40f-f372-4734-a2ff-a043da89d0b2.mock.pstmn.io/location"
       );
-      const json = await response.json();
-      setLocations(json.locations);
-      console.log(json.locations);
+      const data = await response.json();
+      setLocations(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
-    } finally {
-      setLocations(false);
     }
+  };
+  const getData = async () => {
+    await Promise.all([getLocations]);
   };
 
   useEffect(() => {
-    getLocations();
+    getData();
   }, []);
 
   return (
@@ -55,13 +59,14 @@ export default function App() {
         <Door source={require("./images/JejuMap.png")} />
       </First>
       <Second style={styles.container}>
-        {/* {locations.map(location => (
-          <Layer key={location.id}>
-            <BigTitle>{location.id}</BigTitle>
-          </Layer>
-        ))} */}
+        <FlatList
+          data={locations}
+          renderItem={({ item }) => (
+            <Location name={item.name} desc={item.desc} sights={item.sights} />
+          )}
+          keyExtractor={item => item.id + ""}
+        />
       </Second>
-      <Third style={styles.container}></Third>
     </ScrollView>
   );
 }
