@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { QueryClient, QueryClientProvider } from "react-query";
-import Root from "./navigations/Root";
+import Root from "./navigation/Root";
 
 const queryClient = new QueryClient();
 

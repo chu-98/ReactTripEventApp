@@ -1,28 +1,20 @@
 import React from "react";
+import { Image, View } from "react-native";
 import styled from "styled-components/native";
 
-const Name = styled.Text`
-  color: black;
-  font-size: 20px;
-  justify-content: center;
-`;
-const Desc = styled.Text`
-  color: black;
-  font-size: 20px;
-  justify-content: center;
-`;
-const Sights = styled.Text`
-  color: black;
-  font-size: 20px;
-  justify-content: center;
+const Title = styled.Text`
+  font-size: 24;
+  font-family: NotoSansKR-Bold;
 `;
 
-const Location = (name, desc, sights) => (
-  <View>
-    <Name>{name}</Name>
-    <Desc>{desc}</Desc>
-    <Sights>{sights}</Sights>
-  </View>
-);
+const Location = () => {
+  return (
+    <View>
+      <Image source={require("../assets/images/Header.png")} />
+      <Title>제주 쉬기 딱 좋은 지역별 안내</Title>
+      <Image source={require("../assets/images/JejuMap.png")} />
+    </View>
+  );
+};
 
 export default Location;

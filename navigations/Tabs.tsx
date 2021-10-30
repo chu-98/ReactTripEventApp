@@ -11,13 +11,33 @@ const Tab = createBottomTabNavigator();
 
 export default function Tabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      sceneContainerStyle={{ backgroundColor: "#FEF2C6" }}
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: "white",
+        },
+        tabBarActiveTintColor: "orange",
+        tabBarInactiveTintColor: "black",
+        headerStyle: {
+          backgroundColor: "white",
+        },
+        headerTitleStyle: {
+          color: "orange",
+        },
+        tabBarLabelStyle: {
+          marginTop: -10,
+          fontSize: 12,
+          fontWeight: "700",
+        },
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="film-outline" size={size} color={color} />
+          tabBarIcon: () => (
+            <Ionicons name="home-outline" size={24} color={"black"} />
           ),
         }}
       />
@@ -25,8 +45,8 @@ export default function Tabs() {
         name="Location"
         component={Location}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="tv-outline" size={size} color={color} />
+          tabBarIcon: () => (
+            <Ionicons name="map-outline" size={24} color={"black"} />
           ),
         }}
       />
@@ -34,12 +54,8 @@ export default function Tabs() {
         name="Activity"
         component={Activity}
         options={{
-          tabBarIcon: ({ focused, color, size }) => (
-            <Ionicons
-              name={focused ? "search" : "search-outline"}
-              size={size}
-              color={color}
-            />
+          tabBarIcon: () => (
+            <Ionicons name="airplane-outline" size={24} color={"black"} />
           ),
         }}
       />
