@@ -1,11 +1,10 @@
 {
   "expo": {
+    "entryPoint": "./App.tsx",
     "name": "TripEventApp",
     "slug": "TripEventApp",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   },
   "name": "TripEventApp"
 }

@@ -1,20 +1,25 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { Image, View } from "react-native";
-import styled from "styled-components/native";
+import { FlatList } from "react-native";
+import { useQuery } from "react-query";
 
-const Title = styled.Text`
-  font-size: 24;
-  font-family: NotoSansKR-Bold;
-`;
+import { locationAPI, LocationsResponse } from "../apis/location";
+import HList from "./HList";
 
-const Location = () => {
-  return (
-    <View>
-      <Image source={require("../assets/images/Header.png")} />
-      <Title>제주 쉬기 딱 좋은 지역별 안내</Title>
-      <Image source={require("../assets/images/JejuMap.png")} />
-    </View>
+const Location: React.FC<NativeStackScreenProps<any, "Locations">> = () => {
+  const { data: locationData } = useQuery<LocationsResponse>(
+    ["locations", "location"],
+    locationAPI.location
   );
+  return locationData ? (
+    <FlatList
+      keyExtractor={item => item.id + ""}
+      data={locationData.locations}
+      renderItem={({ item }) => (
+        <HList name={item.name} desc={item.desc} sights={item.sights} />
+      )}
+    />
+  ) : null;
 };
 
 export default Location;
