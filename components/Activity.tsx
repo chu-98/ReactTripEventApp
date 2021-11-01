@@ -13,7 +13,7 @@ const Activity: React.FC<NativeStackScreenProps<any, "Activities">> = () => {
   return activityData ? (
     <FlatList
       keyExtractor={item => item.id + ""}
-      data={activityData.themes.trips}
+      data={activityData.themes}
       renderItem={({ item }) => (
         <VList
           name={item.name}
