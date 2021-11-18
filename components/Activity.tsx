@@ -18,6 +18,7 @@ const Activity: React.FC<NativeStackScreenProps<any, "Activities">> = () => {
         <VList
           name={item.name}
           location={item.location}
+          trips={item.trips}
           title={item.title}
           ticketType={item.ticket_type}
           discountPercent={item.discount_percent}

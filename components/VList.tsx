@@ -1,4 +1,5 @@
 import React from "react";
+import { FlatList } from "react-native";
 import styled from "styled-components/native";
 
 const Container = styled.View``;
@@ -29,7 +30,6 @@ const Title = styled.Text`
   font-size: 15px;
   font-weight: 400;
 `;
-
 const Three = styled.View``;
 const Price = styled.Text`
   font-size: 15px;
@@ -48,6 +48,7 @@ interface VListProps {
   discountPercent: number;
   priceOrigin: number;
   priceDiscounted: number;
+  trips: { location: string; title: string };
 }
 
 const VList: React.FC<VListProps> = ({
@@ -58,6 +59,7 @@ const VList: React.FC<VListProps> = ({
   discountPercent,
   priceOrigin,
   priceDiscounted,
+  trips,
 }) => {
   return (
     <Container>
@@ -76,6 +78,10 @@ const VList: React.FC<VListProps> = ({
           <Price>{priceDiscounted}</Price>
         </Three>
       </Column>
+      <FlatList
+        data={trips}
+        renderItem={({ item }) => <Title>{item.location}</Title>}
+      />
     </Container>
   );
 };

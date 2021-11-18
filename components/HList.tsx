@@ -24,7 +24,7 @@ const Sights = styled.Text`
 `;
 
 interface HListProps {
-  id: string;
+  id: number;
   name: string;
   desc: string;
   sights: string;
@@ -35,7 +35,7 @@ const HList: React.FC<HListProps> = ({ id, name, desc, sights }) => {
     <Container>
       <Column>
         <Title>
-          <Index>N.</Index> {name}
+          <Index>{id}.</Index> {name}
         </Title>
         <Desc>{desc}</Desc>
         <Sights>추천명소: {sights}</Sights>

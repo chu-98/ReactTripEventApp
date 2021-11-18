@@ -15,8 +15,13 @@ const Location: React.FC<NativeStackScreenProps<any, "Locations">> = () => {
     <FlatList
       keyExtractor={item => item.id + ""}
       data={locationData.locations}
-      renderItem={({ item }) => (
-        <HList name={item.name} desc={item.desc} sights={item.sights} />
+      renderItem={({ item, index }) => (
+        <HList
+          id={index + 1}
+          name={item.name}
+          desc={item.desc}
+          sights={item.sights}
+        />
       )}
     />
   ) : null;
